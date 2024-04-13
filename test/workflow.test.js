@@ -25,6 +25,7 @@ describe('User workflow tests', () => {
                 expect(res.body.error).to.be.equal(null);
                
                 // 2) Login the user
+                console.log("HEREEEEEEEEEE")
                 chai.request(server)
                     .post('/api/user/login')
                     .send({
@@ -53,9 +54,11 @@ describe('User workflow tests', () => {
                             .end((err, res) => {
                                 
                                 // Asserts
+                                // debugger
+                                console.log("res", res)
                                 expect(res.status).to.be.equal(201);                                
                                 expect(res.body).to.be.a('array');
-                                expect(res.body.length).to.be.eql(1);
+                                expect(res.body.length).to.be.equal(1);
                                 
                                 let savedProduct = res.body[0];
                                 expect(savedProduct.name).to.be.equal(product.name);
@@ -65,6 +68,7 @@ describe('User workflow tests', () => {
 
 
                                 // 4) Verify one product in test DB
+                               
                                 chai.request(server)
                                     .get('/api/products')
                                     .end((err, res) => {
@@ -72,8 +76,8 @@ describe('User workflow tests', () => {
                                         // Asserts
                                         expect(res.status).to.be.equal(200);                                
                                         expect(res.body).to.be.a('array');                                
-                                        expect(res.body.length).to.be.eql(1);
-                                
+                                        expect(res.body.length).to.be.equal(1);
+                                        
                                         done();
                                     });
                             });
@@ -100,6 +104,7 @@ describe('User workflow tests', () => {
                 expect(res.body.error).to.be.equal(null);
                 
                 // 2) Login the user
+                console.log("HEREEEEEEEEEE")
                 chai.request(server)
                     .post('/api/user/login')
                     .send({
@@ -120,6 +125,7 @@ describe('User workflow tests', () => {
                             price: 100,
                             inStock: true
                         };
+                        
 
                         chai.request(server)
                             .post('/api/products')
@@ -130,7 +136,7 @@ describe('User workflow tests', () => {
                                 // Asserts
                                 expect(res.status).to.be.equal(201);                                
                                 expect(res.body).to.be.a('array');
-                                expect(res.body.length).to.be.eql(1);
+                                expect(res.body.length).to.be.equal(1);
                                 
                                 let savedProduct = res.body[0];
                                 expect(savedProduct.name).to.be.equal(product.name);
